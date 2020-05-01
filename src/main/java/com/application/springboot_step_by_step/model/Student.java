@@ -36,7 +36,7 @@ public class Student {
     }
 
     public static void studentRepository() {
-        studentList = new ArrayList<>(asList(new Student("Deku"),new Student("Todoroki")));
+        studentList = new ArrayList<>(asList(new Student(1,"Deku"),new Student(2,"Todoroki")));
     }
     
     public int getId() {
@@ -57,4 +57,29 @@ public class Student {
         this.name = name;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        
+        System.out.println(this == o);
+
+        if (this == o) 
+            return true;
+
+        if (this == null || getClass() != o.getClass())
+            return false;
+
+        Student that = (Student)o;
+
+        if (this.id == that.id)
+            return true;
+
+        return false;        
+    }
+
+    @Override
+    public int hashCode() {
+
+        return this.id;
+
+    }
 }
