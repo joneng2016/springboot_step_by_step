@@ -1,6 +1,7 @@
 package com.application.springboot_step_by_step.endpoint;
 
 import com.application.springboot_step_by_step.error.CustomErrorType;
+import com.application.springboot_step_by_step.error.ResourceNotFoundException;
 import com.application.springboot_step_by_step.model.Student;
 import com.application.springboot_step_by_step.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,18 @@ public class StudentEndPoint {
         
         Optional<Student> student = this.studentDAO.findById(id);
 
-        if (student == null)
-            return new ResponseEntity<>(new CustomErrorType("Student not Found"), HttpStatus.NOT_FOUND);
+        if (!student.isPresent())        
+            throw new ResourceNotFoundException("Student not Found for ID: " + id);
+
 
         return new ResponseEntity<>(student, HttpStatus.OK);
+
+    }
+
+    @GetMapping(path = "/findByName/{name}")
+    public ResponseEntity<?> findStudentsByName(@PathVariable String name) {
+
+        return new ResponseEntity<>(studentDAO.findByNameIgnoreCaseContaining(name), HttpStatus.OK);
 
     }
 
