@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-
 @RestController
 @RequestMapping("students")
 public class StudentEndPoint {
@@ -33,15 +32,11 @@ public class StudentEndPoint {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable("id") Long id) {
-        
+     
+        verifyIfStudentExists(id);        
         Optional<Student> student = this.studentDAO.findById(id);
 
-        if (!student.isPresent())        
-            throw new ResourceNotFoundException("Student not Found for ID: " + id);
-
-
         return new ResponseEntity<>(student, HttpStatus.OK);
-
     }
 
     @GetMapping(path = "/findByName/{name}")
@@ -61,6 +56,8 @@ public class StudentEndPoint {
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
 
+        verifyIfStudentExists(id);
+
         studentDAO.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
@@ -70,9 +67,20 @@ public class StudentEndPoint {
     @PutMapping
     public ResponseEntity<?> update(@RequestBody Student student) { 
 
+        verifyIfStudentExists(student.getId());
+
         studentDAO.save(student);
 
         return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    private void verifyIfStudentExists(Long id) {
+
+        Optional<Student> student = this.studentDAO.findById(id);
+
+        if (!student.isPresent())        
+            throw new ResourceNotFoundException("Student not Found for ID: " + id);
 
     }
 
