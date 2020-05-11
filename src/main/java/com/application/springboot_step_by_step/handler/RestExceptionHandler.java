@@ -23,6 +23,8 @@ public class RestExceptionHandler {
                                                                         .detail(rfnException.getMessage())
                                                                         .developerMessage(rfnException.getClass().getName())
                                                                         .build();
+        
+        return new ResponseEntity<>(rfnDetails,HttpStatus.NOT_FOUND);
 
     }
 }

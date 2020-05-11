@@ -1,4 +1,4 @@
 # springboot_step_by_step
 
-https://www.youtube.com/watch?v=dPKzQnKKoMQ
-8:46
+https://www.youtube.com/watch?v=Oiem7WETQsI
+0:00
