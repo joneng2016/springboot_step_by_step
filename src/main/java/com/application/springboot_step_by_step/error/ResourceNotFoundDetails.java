@@ -42,12 +42,15 @@ public class ResourceNotFoundDetails extends ErrorDetails {
 		}
 
 		public ResourceNotFoundDetails build() {
+
 			ResourceNotFoundDetails resourceNotFoundDetails = new ResourceNotFoundDetails();
+
 			resourceNotFoundDetails.setTitle(title);
 			resourceNotFoundDetails.setDeveloperMessage(developerMessage);
 			resourceNotFoundDetails.setDetail(detail);
 			resourceNotFoundDetails.setStatus(status);
 			resourceNotFoundDetails.setTimestamp(timestamp);
+
 			return resourceNotFoundDetails;
 		}
 	}
