@@ -5,6 +5,7 @@ import com.application.springboot_step_by_step.error.ResourceNotFoundException;
 import com.application.springboot_step_by_step.model.Student;
 import com.application.springboot_step_by_step.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,9 +27,9 @@ public class StudentEndPoint {
     }
 
     @GetMapping  
-    public ResponseEntity<?> listAll() {
+    public ResponseEntity<?> listAll(Pageable pageable) {
        
-        return new ResponseEntity<>(this.studentDAO.findAll(), HttpStatus.OK); 
+        return new ResponseEntity<>(this.studentDAO.findAll(pageable), HttpStatus.OK);
     }
 
     @GetMapping(path = "/{id}")

@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.application.springboot_step_by_step.model.Student;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
-public interface StudentRepository extends  CrudRepository<Student, Long> {
+public interface StudentRepository extends PagingAndSortingRepository<Student, Long> {
 
     List<Student> findByName(String name);
 
