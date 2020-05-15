@@ -1,6 +1,6 @@
 package com.application.springboot_step_by_step.error;
 
-public class ValidatorErrorDetails {
+public class ValidatorErrorDetails extends ErrorDetail{
 
     private String field;
     private String fieldMessage;
@@ -16,49 +16,63 @@ public class ValidatorErrorDetails {
 
 
         private Builder() {
+
         }
 
-        public static ResourceNotFoundDetails.Builder newBuilder() {
-            return new ResourceNotFoundDetails.Builder();
+        public static ValidatorErrorDetails.Builder newBuilder() {
+            return new ValidatorErrorDetails.Builder();
         }
 
-        public ResourceNotFoundDetails.Builder title(String title) {
+        public Builder title(String title) {
             this.title = title;
             return this;
         }
 
-        public ResourceNotFoundDetails.Builder status(int status) {
+        public Builder status(int status) {
             this.status = status;
             return this;
         }
 
-        public ResourceNotFoundDetails.Builder detail(String detail) {
+        public Builder detail(String detail) {
             this.detail = detail;
             return this;
         }
 
-        public ResourceNotFoundDetails.Builder timestamp(long timestamp) {
+        public Builder timestamp(long timestamp) {
             this.timestamp = timestamp;
             return this;
         }
 
-        public ResourceNotFoundDetails.Builder developerMessage(String developerMessage) {
+        public Builder developerMessage(String developerMessage) {
             this.developerMessage = developerMessage;
             return this;
         }
 
-        public ResourceNotFoundDetails build() {
-
-            ResourceNotFoundDetails resourceNotFoundDetails = new ResourceNotFoundDetails();
-
-            resourceNotFoundDetails.setTitle(title);
-            resourceNotFoundDetails.setDeveloperMessage(developerMessage);
-            resourceNotFoundDetails.setDetail(detail);
-            resourceNotFoundDetails.setStatus(status);
-            resourceNotFoundDetails.setTimestamp(timestamp);
-
-            return resourceNotFoundDetails;
+        public Builder field(String field) {
+            this.field = field;
+            return this;
         }
+
+        public Builder fieldMessage(String fieldMessage) {
+            this.fieldMessage = fieldMessage;
+            return this;
+        }
+
+        public ValidatorErrorDetails build() {
+
+            ValidatorErrorDetails validatorErrorDetails = new ValidatorErrorDetails();
+
+            validatorErrorDetails.setTitle(title);
+            validatorErrorDetails.setDeveloperMessage(developerMessage);
+            validatorErrorDetails.setDetail(detail);
+            validatorErrorDetails.setStatus(status);
+            validatorErrorDetails.setTimestamp(timestamp);
+            validatorErrorDetails.setField(field);
+            validatorErrorDetails.setFieldMessage(fieldMessage);
+
+            return validatorErrorDetails;
+        }
+    }
 
     public String getField() {
         return field;

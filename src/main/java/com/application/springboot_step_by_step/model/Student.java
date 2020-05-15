@@ -8,7 +8,7 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Entity
-public class Student extends AbstractEntity{
+public class Student extends AbstractEntity {
 
     @NotEmpty
     private String name;
